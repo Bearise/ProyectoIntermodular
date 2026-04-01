@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Velvia</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="assets/images/logo/logo.png" alt="Logo Velvia">
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">INICIO</a>
+      <a href="productos.html">PRODUCTOS</a>
+      <a href="blog.html">BLOG</a>
+      <a href="conocenos.html">CONÓCENOS</a>
+    </nav>
+  </header>
+
+  <!-- SECCIÓN PRODUCTOS -->
+  <section class="products" id="productos">
+
+    <div class="products-container">
+
+      <div class="products-header reveal active">
+        <h2>Nuestros Productos</h2>
+        <p class="lead">
+          Descubre nuestras creaciones artesanales, hechas con amor y cuidado. Cada familia de productos tiene su propia esencia.
+        </p>
+      </div>
+
+      <!-- Familia: Velas -->
+      <div class="product-family reveal active">
+        <h3>Velas</h3>
+        <div class="products-grid">
+          <div class="product-card">
+            <img src="assets/images/products/velas/canelaynaranja.png" alt="Vela Canela y Naranja">
+            <h4>Canela y Naranja</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/velas/frutosrojos.png" alt="Vela Frutos Rojos">
+            <h4>Frutos Rojos</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/velas/rosas.png" alt="Vela Rosas">
+            <h4>Rosas</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/velas/vainilla.png" alt="Vela Vainilla">
+            <h4>Vainilla</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Familia: Bálsamos labiales -->
+      <div class="product-family reveal active">
+        <h3>Bálsamos Labiales</h3>
+        <div class="products-grid">
+          <div class="product-card">
+            <img src="assets/images/products/balsamos/balsamoavenamiel.png" alt="Bálsamo Avena y Miel">
+            <h4>Avena y Miel</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/balsamos/balsamocacaoalmendra.png" alt="Bálsamo Cacao y Almendra">
+            <h4>Cacao y Almendra</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/balsamos/balsamomentalima.png" alt="Bálsamo Menta y Lima">
+            <h4>Menta y Lima</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Familia: Jabones -->
+      <div class="product-family reveal active">
+        <h3>Jabones</h3>
+        <div class="products-grid">
+          <div class="product-card">
+            <img src="assets/images/products/jabones/avenamiel.png" alt="Jabón Avena y Miel">
+            <h4>Avena y Miel</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/jabones/lavandakarite.png" alt="Jabón Lavanda y Karité">
+            <h4>Lavanda y Karité</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/jabones/naranjoenflor.png" alt="Jabón Naranjo en Flor">
+            <h4>Naranjo en Flor</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Familia: Brumas -->
+      <div class="product-family reveal active">
+        <h3>Brumas</h3>
+        <div class="products-grid">
+          <div class="product-card">
+            <img src="assets/images/products/brumas/almohada.jpg" alt="Bruma Almohada">
+            <h4>Almohada</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/brumas/corporal.png" alt="Bruma Corporal">
+            <h4>Corporal</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/brumas/energetica.png" alt="Bruma Energética">
+            <h4>Energética</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Familia: Aceites esenciales -->
+      <div class="product-family reveal active">
+        <h3>Aceites Esenciales</h3>
+        <div class="products-grid">
+          <div class="product-card">
+            <img src="assets/images/products/aceites/aceitelavanda.png" alt="Aceite Lavanda">
+            <h4>Lavanda</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/aceites/aceiteeucalipto.png" alt="Aceite Eucalipto">
+            <h4>Eucalipto</h4>
+          </div>
+          <div class="product-card">
+            <img src="assets/images/products/aceites/aceitearboldete.png" alt="Aceite Árbol de Té">
+            <h4>Árbol de Té</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  
+  <script src="js/main.js"></script>
+
+
+  <!-- POPUP NEWSLETTER -->
+<div id="newsletterPopup" class="popup-overlay">
+  <div class="popup-content">
+
+    <span class="close-btn">&times;</span>
+
+    <h2>Únete a nuestra comunidad</h2>
+    <p>Recibe novedades, promociones y rituales exclusivos.</p>
+
+    <form class="popup-form">
+      <input type="email" placeholder="Tu correo electrónico" required>
+      <button type="submit">Suscribirme</button>
+    </form>
+
+  </div>
+</div>
+
+</body>
+</html>

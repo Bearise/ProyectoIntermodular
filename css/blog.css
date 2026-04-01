@@ -1,0 +1,209 @@
+/* ==============================
+   Reset básico
+============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.9; /* line-height amplio para mejor lectura */
+    color: #555;      /* gris cálido para párrafos */
+    background-color: #fffaf5; /* tono muy suave y cálido */
+    scroll-behavior: smooth;
+}
+
+/* ==============================
+   Contenedor principal
+============================== */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem; /* padding interno generoso */
+}
+
+/* ==============================
+   Cabecera / Header
+============================== */
+header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #f8f4ef; /* fondo crema suave */
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #8b5c52; /* marrón/rosa suave */
+    margin-bottom: 1rem;
+}
+
+header p {
+    font-size: 1.3rem;
+    color: #7a5f57;
+    margin-bottom: 0;
+}
+
+/* ==============================
+   Navegación
+============================== */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #8b5c52;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #c49a8b; /* rosa suave de acento */
+}
+
+/* ==============================
+   Secciones principales
+============================== */
+section {
+    margin: 4rem 0;
+    padding: 2rem 1rem; /* padding para espacios internos */
+}
+
+/* ==============================
+   Títulos
+============================== */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    text-align: center;
+    color: #8b5c52;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #b38b8b; /* rosa/marrón suave */
+    margin: 2.5rem 0 1rem 0; /* espaciado vertical amplio */
+}
+
+h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #c49a8b; /* rosa suave */
+    margin-bottom: 1rem;
+}
+
+/* ==============================
+   Párrafos
+============================== */
+p {
+    color: #555; /* gris cálido */
+    font-size: 1rem;
+    line-height: 1.9;
+    margin: 1rem 0; /* márgenes amplios para respiración */
+}
+
+/* ==============================
+   Bloques diferenciados (rituales / tips)
+============================== */
+.ritual {
+    background-color: #f8f4ef; /* crema suave */
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.ingrediente-estrella {
+    border-left: 4px solid #c49a8b; /* borde lateral rosa suave */
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #b37474;
+    position: relative;
+}
+
+
+
+/* ==============================
+   Listas con estilo
+============================== */
+ul, ol {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.8rem;
+    line-height: 1.8;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+
+
+/* ==============================
+   Botones / enlaces destacados
+============================== */
+button, .btn {
+    padding: 0.8rem 1.8rem;
+    background-color: #c49a8b; 
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #b37474;
+}
+
+
+
+/* ==============================
+   Imágenes
+============================== */
+img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+}
+
+/* ==============================
+   Responsive / Móvil
+============================== */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.7rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 2rem 1rem;
+    }
+}

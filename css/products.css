@@ -1,0 +1,117 @@
+/* ==========================
+   Productos - Velvia
+========================== */
+
+/* SECCIÓN PRODUCTOS */
+.products {
+  padding: 100px 10%;
+  background-color: #fff8f4;
+}
+
+.products-header h2 {
+  font-size: 32px;
+  color: #3e3e3e;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.products-header .lead {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 60px;
+}
+
+/* Familia de productos */
+.product-family {
+  margin-bottom: 80px;
+}
+
+.product-family h3 {
+  font-size: 28px;
+  color: #3e3e3e;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Grid de productos */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+/* Tarjetas de productos */
+.product-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.product-card h4 {
+  font-size: 20px;
+  color: #3e3e3e;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ANIMACIÓN REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+  .products {
+    padding: 80px 6%;
+  }
+
+  .products-header h2 {
+    font-size: 26px;
+  }
+
+  .products-header .lead {
+    font-size: 16px;
+  }
+
+  .product-family h3 {
+    font-size: 24px;
+  }
+
+  .product-card h4 {
+    font-size: 18px;
+  }
+
+  .product-card p {
+    font-size: 15px;
+  }
+}
