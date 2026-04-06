@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php'; // Tu archivo con el host localhost:3307 [cite: 120]
+include_once 'conexion.php'; // Tu archivo con el host localhost:3307 [cite: 120]
 
 try {
     // 1. Consultamos los productos y su categoría [cite: 211-217]
