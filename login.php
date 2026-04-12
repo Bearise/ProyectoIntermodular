@@ -1,30 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - Velvia</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div style="max-width: 400px; margin: 50px auto; font-family: sans-serif; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
-        <h2>Iniciar Sesión en Velvia</h2>
+<?php
+$css_extra = 'auth.css';
+include("php/includes/header.php");
 
-        <?php if(isset($_GET['registro']) && $_GET['registro'] == 'exito'): ?>
-            <p style="color: green;">¡Registro completado! Ya puedes iniciar sesión.</p>
-        <?php endif; ?>
+$error = $_GET['error'] ?? '';
+$success = $_GET['success'] ?? '';
+?>
 
-        <form action="php/auth/procesar_login.php" method="POST">
-            <p>
-                <label>Email:</label><br>
-                <input type="email" name="email" required style="width: 100%;">
-            </p>
-            <p>
-                <label>Contraseña:</label><br>
-                <input type="password" name="password" required style="width: 100%;">
-            </p>
-            <button type="submit" style="background: #c58c85; color: white; border: none; padding: 10px; width: 100%; cursor: pointer;">Entrar</button>
-        </form>
-        <p>¿Aún no tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
-    </div>
-</body>
-</html>
+<section class="auth-section">
+  <div class="auth-card">
+    <h1>Iniciar sesión</h1>
+    <p class="auth-subtitle">
+      Accede a tu cuenta para continuar con tu ritual de compra.
+    </p>
+
+    <?php if ($error === 'campos_vacios'): ?>
+      <div class="auth-error">Debes rellenar todos los campos.</div>
+    <?php elseif ($error === 'credenciales'): ?>
+      <div class="auth-error">Correo o contraseña incorrectos.</div>
+    <?php endif; ?>
+
+    <?php if ($success === 'registro_ok'): ?>
+      <div class="auth-success">Tu cuenta se ha creado correctamente. Ya puedes iniciar sesión.</div>
+    <?php endif; ?>
+
+    <form action="php/auth/procesar_login.php" method="POST" class="auth-form">
+      <div class="auth-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="auth-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <button type="submit" class="auth-btn">Entrar</button>
+    </form>
+
+    <p class="auth-footer">
+      ¿No tienes cuenta? <a href="registro.php">Créala aquí</a>
+    </p>
+  </div>
+</section>
+
+<?php include("php/includes/footer.php"); ?>
+
+

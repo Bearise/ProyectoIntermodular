@@ -1,34 +1,38 @@
 <?php
-session_start(); // Fundamental para que la web "recuerde" al usuario
-include_once '../conexion.php'; // Ruta: sube un nivel para encontrarlo
+session_start();
+include_once '../conexion.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    try {
-        // Buscamos al usuario por su email
-        $sql = "SELECT * FROM USUARIO WHERE email = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$email]);
-        $usuario = $stmt->fetch();
-
-        // Si existe el usuario y la contraseña coincide (usando password_verify)
-        if ($usuario && password_verify($password, $usuario['password'])) {
-            // Guardamos datos importantes en la sesión
-            $_SESSION['usuario_id'] = $usuario['id_usuario'];
-            $_SESSION['usuario_nombre'] = $usuario['nombre'];
-            $_SESSION['rol'] = $usuario['rol']; // Para saber si es admin o cliente
-
-            // Redirigimos a la página de inicio
-            header("Location: ../../index.php");
-            exit();
-        } else {
-            // Error: credenciales incorrectas
-            header("Location: ../../login.php?error=1");
-            exit();
-        }
-    } catch (PDOException $e) {
-        echo "Error en el login: " . $e->getMessage();
-    }
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: ../../login.php');
+    exit();
 }
+
+$email = trim($_POST['email'] ?? '');
+$password = $_POST['password'] ?? '';
+
+if (empty($email) || empty($password)) {
+    header('Location: ../../login.php?error=campos_vacios');
+    exit();
+}
+
+// Buscar usuario por email
+$stmt = $pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+$stmt->execute([$email]);
+$usuario = $stmt->fetch();
+
+if (!$usuario || !password_verify($password, $usuario['password'])) {
+    header('Location: ../../login.php?error=credenciales');
+    exit();
+}
+
+// Guardar sesión
+$_SESSION['usuario'] = [
+    'id' => $usuario['id_usuario'],
+    'nombre' => $usuario['nombre'],
+    'apellidos' => $usuario['apellidos'],
+    'email' => $usuario['email']
+];
+
+header('Location: ../../index.php');
+exit();
+

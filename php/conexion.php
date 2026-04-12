@@ -15,7 +15,7 @@ $options = [
 
 try {
      $pdo = new PDO($dsn, $user, $pass, $options);
-     // echo "Conexión exitosa a Velvia"; // Descomenta esto para probar
+     // echo "Conexión exitosa a Velvia"; // Descomentar para probar
 } catch (\PDOException $e) {
      throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
