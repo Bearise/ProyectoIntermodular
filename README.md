@@ -11,30 +11,29 @@ Proyecto Intermodular de Desarrollo de Aplicaciones Web enfocado en la creación
 - JavaScript
 - XAMPP (entorno local)
 
----
 
 ## Funcionalidades principales
 
-### 👤 Usuarios
+### Usuarios
 - Registro e inicio de sesión
 - Gestión de perfil
 - Direcciones de envío
 
-### 🛍️ Catálogo
+### Catálogo
 - Productos dinámicos desde base de datos
 - Categorías (velas, bálsamos, jabones, etc.)
 - Packs de productos
 
-### 🛒 Carrito
+### Carrito
 - Añadir productos
 - Eliminar productos
 - Contador de productos en el header
 
-### 💳 Checkout
+### Checkout
 - Selección de dirección
 - Generación de pedido
 
-### 📦 Pedidos
+### Pedidos
 - Historial de pedidos del usuario
 
 ### Panel de administración
