@@ -1,17 +1,5 @@
 <?php include("php/includes/header.php"); ?>
 
-<!-- MENÚ LATERAL -->
-<aside class="side-menu" id="sideMenu">
-  <ul>
-    <li>Velas</li>
-    <li>Bálsamos</li>
-    <li>Jabones</li>
-    <li>Brumas</li>
-    <li>Aceites esenciales</li>
-    <li>Packs</li>
-  </ul>
-</aside>
-
 <!-- HERO -->
 <section class="hero"></section>
 

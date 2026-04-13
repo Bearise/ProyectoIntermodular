@@ -39,20 +39,25 @@ include("php/includes/header.php");
       <div class="pedidos-list">
 
         <?php foreach ($carrito as $item): ?>
-          <div class="pedido-card">
+            <div class="producto-linea">
 
-            <p><strong><?= htmlspecialchars($item['nombre']); ?></strong></p>
-            <p>Cantidad: <?= htmlspecialchars($item['cantidad']); ?></p>
-            <p>Precio: <?= number_format($item['precio'], 2); ?> €</p>
+             <img src="<?= htmlspecialchars($item['imagen']); ?>" 
+                    alt="<?= htmlspecialchars($item['nombre']); ?>" 
+                     class="producto-img">
 
-            <form action="php/carrito/eliminar.php" method="POST" class="form-eliminar">
-              <input type="hidden" name="id_producto" value="<?= $item['id_producto']; ?>">
-              <button type="submit" class="btn-eliminar">
-                Eliminar
-              </button>
-            </form>
+                <div class="producto-info">
+                 <p><strong><?= htmlspecialchars($item['nombre']); ?></strong></p>
+                 <p>Cantidad: <?= $item['cantidad']; ?></p>
+                 <p>Precio: <?= number_format($item['precio'], 2); ?> €</p>
+                </div>
 
-          </div>
+                <!-- ELIMINAR -->
+             <form action="php/carrito/eliminar.php" method="POST" class="form-eliminar">
+                <input type="hidden" name="id_producto" value="<?= $item['id_producto']; ?>">
+                <button type="submit" class="btn-eliminar">Eliminar</button>
+             </form>
+
+             </div>
         <?php endforeach; ?>
 
       </div>

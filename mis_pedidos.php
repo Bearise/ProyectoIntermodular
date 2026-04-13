@@ -60,6 +60,10 @@ include("php/includes/header.php");
                 <?= htmlspecialchars($pedido['provincia']); ?>, <?= htmlspecialchars($pedido['pais']); ?>
               </p>
             <?php endif; ?>
+
+            <a href="pedido.php?id=<?= $pedido['id_pedido']; ?>" class="auth-btn btn-secundario">
+              Ver detalle
+            </a>
           </div>
         <?php endforeach; ?>
 
@@ -72,3 +76,4 @@ include("php/includes/header.php");
 </section>
 
 <?php include("php/includes/footer.php"); ?>
+

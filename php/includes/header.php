@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,11 +10,11 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velvia</title>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ProyectoIntermodular/assets/images/logo/favicon.png">
   <link rel="stylesheet" href="/ProyectoIntermodular/css/styles.css">
 
   <?php if (isset($css_extra)): ?>
-    <link rel="stylesheet" href="css/<?php echo $css_extra; ?>">
+    <link rel="stylesheet" href="/ProyectoIntermodular/css/<?php echo $css_extra; ?>">
   <?php endif; ?>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -36,64 +35,76 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <div class="logo">
     <a href="index.php">
-      <img src="assets/images/logo/logo.png" alt="Logo Velvia">
+      <img src="/ProyectoIntermodular/assets/images/logo/logo.png" alt="Logo Velvia">
     </a>
   </div>
 
   <div class="right-section">
 
-  <div class="search-box">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Search">
-  </div>
-
-  <?php if (isset($_SESSION['usuario'])): ?>
-  <div class="user-menu">
-    <button class="user-menu-btn" id="userMenuBtn" type="button">
-      <span class="user-name">
-        <?= htmlspecialchars($_SESSION['usuario']['nombre']); ?>
-      </span>
-      <i class="fa-regular fa-user icon"></i>
-    </button>
-
-    <div class="user-dropdown" id="userDropdown">
-      <a href="perfil.php">Mi cuenta</a>
-      <a href="mis_pedidos.php">Mis pedidos</a>
-      <a href="php/auth/logout.php">Cerrar sesión</a>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search">
     </div>
+
+    <?php if (isset($_SESSION['usuario'])): ?>
+      <div class="user-menu">
+        <button class="user-menu-btn" id="userMenuBtn" type="button">
+          <span class="user-name">
+            <?= htmlspecialchars($_SESSION['usuario']['nombre']); ?>
+          </span>
+          <i class="fa-regular fa-user icon"></i>
+        </button>
+
+        <div class="user-dropdown" id="userDropdown">
+          <a href="perfil.php">Mi cuenta</a>
+          <a href="mis_pedidos.php">Mis pedidos</a>
+          <a href="php/auth/logout.php">Cerrar sesión</a>
+        </div>
+      </div>
+    <?php else: ?>
+      <a href="login.php">
+        <i class="fa-regular fa-user icon"></i>
+      </a>
+    <?php endif; ?>
+
+    <div class="cart-icon">
+      <a href="carrito.php">
+        <i class="fa-solid fa-bag-shopping icon"></i>
+
+        <?php
+        if (isset($_SESSION['usuario'])) {
+            include_once __DIR__ . '/../conexion.php';
+
+            $stmt = $pdo->prepare("
+                SELECT SUM(cantidad) as total
+                FROM carrito
+                WHERE id_usuario = ?
+            ");
+            $stmt->execute([$_SESSION['usuario']['id']]);
+            $resultado = $stmt->fetch();
+
+            if ($resultado['total'] > 0):
+        ?>
+            <span class="cart-count"><?= $resultado['total']; ?></span>
+        <?php
+            endif;
+        }
+        ?>
+      </a>
+    </div>
+
   </div>
-<?php else: ?>
-  <a href="login.php">
-    <i class="fa-regular fa-user icon"></i>
-  </a>
-<?php endif; ?>
-
-  <div class="cart-icon">
-  <a href="carrito.php">
-    <i class="fa-solid fa-bag-shopping icon"></i>
-
-    <?php
-    if (isset($_SESSION['usuario'])) {
-        include_once 'php/conexion.php';
-
-        $stmt = $pdo->prepare("
-            SELECT SUM(cantidad) as total
-            FROM carrito
-            WHERE id_usuario = ?
-        ");
-        $stmt->execute([$_SESSION['usuario']['id']]);
-        $resultado = $stmt->fetch();
-
-        if ($resultado['total'] > 0):
-    ?>
-        <span class="cart-count"><?= $resultado['total']; ?></span>
-    <?php
-        endif;
-    }
-    ?>
-  </a>
-</div>
-
- </div>
 
 </header>
+
+<!-- MENÚ LATERAL -->
+<aside class="side-menu" id="sideMenu">
+  <ul>
+    <li><a href="productos.php#velas">Velas</a></li>
+    <li><a href="productos.php#balsamos">Bálsamos</a></li>
+    <li><a href="productos.php#jabones">Jabones</a></li>
+    <li><a href="productos.php#brumas">Brumas</a></li>
+    <li><a href="productos.php#aceites-esenciales">Aceites esenciales</a></li>
+    <li><a href="productos.php#packs">Packs</a></li>
+  </ul>
+</aside>

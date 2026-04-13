@@ -20,17 +20,27 @@ body {
 }
 
 /* --- IZQUIERDA --- */
-.left-section {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 
 .nav-links a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   margin-right: 15px;
+}
+
+.menu-icon {
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
 }
 
 /* --- LOGO --- */
@@ -131,26 +141,40 @@ body {
 .side-menu {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 220px;
+  left: -260px;
+  width: 240px;
   height: 100%;
-  background-color: white;
-  padding: 40px 20px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
-}
-
-.side-menu ul {
-  list-style: none;
-}
-
-.side-menu li {
-  margin-bottom: 15px;
-  cursor: pointer;
+  background-color: #ffffff;
+  padding: 100px 24px 30px;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+  transition: left 0.3s ease;
+  z-index: 3000;
 }
 
 .side-menu.active {
   left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu li {
+  margin-bottom: 18px;
+}
+
+.side-menu li a {
+  text-decoration: none;
+  color: #3e3e3e;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.side-menu li a:hover {
+  color: #c58c85;
 }
 
 /* --- SECCIÓN --- */

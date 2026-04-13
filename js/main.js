@@ -1,15 +1,36 @@
 console.log("MAIN JS CARGADO");
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* ---- MENÚ LATERAL ---- */
-  const menuBtn = document.getElementById("menuBtn");
-  const sideMenu = document.getElementById("sideMenu");
 
-  if (menuBtn && sideMenu) {
-    menuBtn.addEventListener("click", function () {
-      sideMenu.classList.toggle("active");
+/* ---- MENÚ LATERAL ---- */
+const menuBtn = document.getElementById("menuBtn");
+const sideMenu = document.getElementById("sideMenu");
+const sideMenuLinks = document.querySelectorAll("#sideMenu a");
+
+console.log("menuBtn:", menuBtn);
+console.log("sideMenu:", sideMenu);
+
+if (menuBtn && sideMenu) {
+  menuBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    console.log("click menú");
+    sideMenu.classList.toggle("active");
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!sideMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      sideMenu.classList.remove("active");
+    }
+  });
+}
+
+if (sideMenu && sideMenuLinks.length > 0) {
+  sideMenuLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      sideMenu.classList.remove("active");
     });
-  }
+  });
+}
 
   /* ---- REVEAL ANIMATION ---- */
   function reveal() {

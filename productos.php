@@ -13,6 +13,17 @@ function obtenerProductos($pdo, $id_cat) {
     $stmt->execute([$id_cat]);
     return $stmt->fetchAll();
 }
+
+// Función para generar ids tipo ancla
+function generarIdCategoria($nombre) {
+    $id = mb_strtolower(trim($nombre), 'UTF-8');
+    $id = str_replace(
+        ['á', 'é', 'í', 'ó', 'ú', 'ñ', ' '],
+        ['a', 'e', 'i', 'o', 'u', 'n', '-'],
+        $id
+    );
+    return $id;
+}
 ?>
 
 <?php include("php/includes/header.php"); ?>
@@ -29,11 +40,11 @@ function obtenerProductos($pdo, $id_cat) {
     </div>
 
     <?php foreach ($categorias as $cat): ?>
-      <div class="product-family reveal active">
-        <h3><?= $cat['nombre']; ?></h3>
+      <div class="product-family reveal active" id="<?= generarIdCategoria($cat['nombre']); ?>">
+        <h3><?= htmlspecialchars($cat['nombre']); ?></h3>
 
         <?php if (!empty($cat['descripcion'])): ?>
-          <p class="categoria-desc"><?= $cat['descripcion']; ?></p>
+          <p class="categoria-desc"><?= htmlspecialchars($cat['descripcion']); ?></p>
         <?php endif; ?>
 
         <div class="products-grid">
@@ -42,12 +53,12 @@ function obtenerProductos($pdo, $id_cat) {
           <?php foreach ($productos as $p): ?>
             <div class="product-card">
               <a href="producto.php?id=<?= $p['id_producto']; ?>">
-                <img src="<?= $p['imagen']; ?>" alt="<?= $p['nombre']; ?>">
+                <img src="<?= htmlspecialchars($p['imagen']); ?>" alt="<?= htmlspecialchars($p['nombre']); ?>">
               </a>
 
               <h4>
                 <a href="producto.php?id=<?= $p['id_producto']; ?>">
-                  <?= $p['nombre']; ?>
+                  <?= htmlspecialchars($p['nombre']); ?>
                 </a>
               </h4>
 

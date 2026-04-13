@@ -30,7 +30,8 @@ $_SESSION['usuario'] = [
     'id' => $usuario['id_usuario'],
     'nombre' => $usuario['nombre'],
     'apellidos' => $usuario['apellidos'],
-    'email' => $usuario['email']
+    'email' => $usuario['email'],
+    'rol' => $usuario['rol']
 ];
 
 header('Location: ../../index.php');
