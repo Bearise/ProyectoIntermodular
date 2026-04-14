@@ -2,7 +2,6 @@
 
 ![PHP](https://img.shields.io/badge/PHP-8.2-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-orange)
-![Status](https://img.shields.io/badge/Estado-Funcional-success)
 
 Proyecto Intermodular de Desarrollo de Aplicaciones Web enfocado en la creación de una tienda online completa con funcionalidades reales de ecommerce.
 
