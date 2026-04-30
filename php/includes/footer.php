@@ -61,7 +61,7 @@
   </div>
 </div>
 
-<script src="js/main.js?v=7"></script>
+<script src="/ProyectoIntermodular/js/main.js?v=21"></script>
 
 </body>
 </html>

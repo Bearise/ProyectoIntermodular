@@ -305,3 +305,35 @@
   }
 
 }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
+  justify-content: center;
+  gap: 30px;
+}
+
+/* ==========================
+   MODO BÚSQUEDA
+========================== */
+
+.search-mode {
+  background-color: #fffaf7; /* más claro que productos */
+  padding: 80px 10%;
+}
+
+.search-mode .products-header h2 {
+  font-size: 28px;
+  color: #8b5c52;
+}
+
+.search-mode .lead {
+  color: #888;
+  font-size: 15px;
+}
+
+/* destacar término buscado */
+.search-highlight {
+  color: #c58c85;
+  font-weight: 600;
+}

@@ -605,3 +605,131 @@
   resize: vertical;
   min-height: 120px;
 }
+
+/* ==========================
+   ESTADO PEDIDO ADMIN
+========================== */
+
+.pedido-card strong {
+  color: #3e3e3e;
+}
+
+
+/* ==========================
+   CANTIDAD CARRITO
+========================== */
+
+.form-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.form-cantidad label {
+  font-size: 14px;
+  color: #555;
+}
+
+.form-cantidad input {
+  width: 70px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.btn-actualizar {
+  background: #f3e6e1;
+  color: #8b5c52;
+  border: 1px solid #e6cfc6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.btn-actualizar:hover {
+  background: #ead7d0;
+}
+
+.checkout-radio-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #fff8f4;
+  border: 1px solid #ead7d0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.checkout-radio-card input {
+  margin-top: 4px;
+}
+
+
+/* ==========================
+   RESPONSIVE ÁREA USUARIO / ADMIN
+========================== */
+
+@media (max-width: 700px) {
+
+  .auth-section {
+    padding: 50px 5%;
+    align-items: flex-start;
+  }
+
+  .auth-card,
+  .admin-form-card,
+  .admin-header-box {
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+
+  .auth-card h1,
+  .admin-header-box h1 {
+    font-size: 26px;
+  }
+
+  .producto-linea {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .producto-img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .form-eliminar {
+    align-self: flex-start;
+  }
+
+  .perfil-acciones {
+    flex-direction: column;
+  }
+
+  .perfil-acciones .auth-btn,
+  .auth-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .admin-producto-card {
+    flex-direction: column;
+  }
+
+  .admin-producto-img img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .admin-producto-acciones {
+    width: 100%;
+    flex-direction: column;
+  }
+}

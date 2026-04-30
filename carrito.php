@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
@@ -39,34 +39,56 @@ include("php/includes/header.php");
       <div class="pedidos-list">
 
         <?php foreach ($carrito as $item): ?>
-            <div class="producto-linea">
+          <div class="producto-linea">
 
-             <img src="<?= htmlspecialchars($item['imagen']); ?>" 
-                    alt="<?= htmlspecialchars($item['nombre']); ?>" 
-                     class="producto-img">
+            <img src="<?= htmlspecialchars($item['imagen']); ?>" 
+                 alt="<?= htmlspecialchars($item['nombre']); ?>" 
+                 class="producto-img">
 
-                <div class="producto-info">
-                 <p><strong><?= htmlspecialchars($item['nombre']); ?></strong></p>
-                 <p>Cantidad: <?= $item['cantidad']; ?></p>
-                 <p>Precio: <?= number_format($item['precio'], 2); ?> €</p>
-                </div>
+            <div class="producto-info">
+              <p><strong><?= htmlspecialchars($item['nombre']); ?></strong></p>
+              <p>Precio unitario: <?= number_format($item['precio'], 2); ?> €</p>
+              <p>Subtotal: <?= number_format($item['precio'] * $item['cantidad'], 2); ?> €</p>
 
-                <!-- ELIMINAR -->
-             <form action="php/carrito/eliminar.php" method="POST" class="form-eliminar">
+              <form action="php/carrito/actualizar.php" method="POST" class="form-cantidad auto-update-form">
                 <input type="hidden" name="id_producto" value="<?= $item['id_producto']; ?>">
-                <button type="submit" class="btn-eliminar">Eliminar</button>
-             </form>
 
-             </div>
+                <label for="cantidad-<?= $item['id_producto']; ?>">Cantidad:</label>
+                <input 
+                  type="number" 
+                  id="cantidad-<?= $item['id_producto']; ?>" 
+                  name="cantidad" 
+                  value="<?= $item['cantidad']; ?>" 
+                  min="1"
+                  class="cantidad-input"
+                >
+              </form>
+            </div>
+
+            <!-- ELIMINAR PRODUCTO -->
+            <form action="php/carrito/eliminar.php" method="POST" class="form-eliminar">
+              <input type="hidden" name="id_producto" value="<?= $item['id_producto']; ?>">
+              <button type="submit" class="btn-eliminar">Eliminar</button>
+            </form>
+
+          </div>
         <?php endforeach; ?>
 
       </div>
 
       <p><strong>Total: <?= number_format($total, 2); ?> €</strong></p>
 
-      <a href="checkout.php" class="auth-btn btn-principal">
-        Ir a checkout
-      </a>
+      <div class="perfil-acciones">
+        <a href="checkout.php" class="auth-btn btn-principal">
+          Ir a checkout
+        </a>
+
+        <a href="php/carrito/vaciar.php" 
+           class="auth-btn btn-logout"
+           onclick="return confirm('¿Seguro que quieres vaciar el carrito?');">
+          Vaciar carrito
+        </a>
+      </div>
 
     <?php else: ?>
 
@@ -78,3 +100,4 @@ include("php/includes/header.php");
 </section>
 
 <?php include("php/includes/footer.php"); ?>
+

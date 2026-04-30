@@ -46,37 +46,68 @@ include("php/includes/header.php");
       <div class="pedidos-list">
         <?php foreach ($carrito as $item): ?>
           <div class="pedido-card">
-            <p><strong><?= $item['nombre']; ?></strong></p>
-            <p>Cantidad: <?= $item['cantidad']; ?></p>
-            <p>Precio: <?= $item['precio']; ?> €</p>
+            <p><strong><?= htmlspecialchars($item['nombre']); ?></strong></p>
+            <p>Cantidad: <?= htmlspecialchars($item['cantidad']); ?></p>
+            <p>Precio: <?= number_format($item['precio'], 2); ?> €</p>
           </div>
         <?php endforeach; ?>
       </div>
 
       <p><strong>Total: <?= number_format($total, 2); ?> €</strong></p>
 
+      <h2 class="perfil-subtitle">Selecciona dirección</h2>
+
+      <?php if (count($direcciones) === 0): ?>
+
+        <div class="auth-error">
+          Para finalizar tu pedido necesitas añadir una dirección de envío. ¡Ve a tu cuenta y añádela!
+        </div>
+
+        <div class="perfil-acciones">
+          <a href="agregar_direccion.php" class="auth-btn btn-principal">
+            Añadir dirección
+          </a>
+
+          <a href="carrito.php" class="auth-btn btn-secundario">
+            Volver al carrito
+          </a>
+        </div>
+
+      <?php else: ?>
+
+        <form action="php/pedido/procesar_checkout.php" method="POST" class="auth-form">
+
+          <?php foreach ($direcciones as $dir): ?>
+            <label class="checkout-radio-card">
+              <input type="radio" name="direccion" value="<?= $dir['id_direccion']; ?>" required>
+
+              <span>
+                <?= htmlspecialchars($dir['calle']); ?>, <?= htmlspecialchars($dir['numero']); ?><br>
+                <?= htmlspecialchars($dir['codigo_postal']); ?> <?= htmlspecialchars($dir['ciudad']); ?><br>
+                <?= htmlspecialchars($dir['provincia']); ?>, <?= htmlspecialchars($dir['pais']); ?>
+              </span>
+            </label>
+          <?php endforeach; ?>
+
+          <button type="submit" class="auth-btn btn-principal">
+            Confirmar pedido
+          </button>
+
+        </form>
+
+      <?php endif; ?>
+
     <?php else: ?>
+
       <p>Tu carrito está vacío.</p>
+
+      <div class="perfil-acciones">
+        <a href="productos.php" class="auth-btn btn-principal">
+          Ver productos
+        </a>
+      </div>
+
     <?php endif; ?>
-
-    <h2 class="perfil-subtitle">Selecciona dirección</h2>
-
-    <form action="php/pedido/procesar_checkout.php" method="POST">
-
-      <?php foreach ($direcciones as $dir): ?>
-        <label style="display:block; margin-bottom:10px;">
-          <input type="radio" name="direccion" value="<?= $dir['id_direccion']; ?>" required>
-
-          <?= $dir['calle']; ?>, <?= $dir['numero']; ?>,
-          <?= $dir['codigo_postal']; ?> <?= $dir['ciudad']; ?>
-        </label>
-      <?php endforeach; ?>
-
-      <button type="submit" class="auth-btn btn-principal">
-        Confirmar pedido
-      </button>
-
-    </form>
 
   </div>
 </section>

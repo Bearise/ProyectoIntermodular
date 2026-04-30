@@ -125,4 +125,16 @@ if (sideMenu && sideMenuLinks.length > 0) {
       }
     });
   }
+    /* ---- ACTUALIZAR CANTIDAD CARRITO AUTOMÁTICAMENTE ---- */
+  const cantidadInputs = document.querySelectorAll(".cantidad-input");
+
+  cantidadInputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      const form = input.closest("form");
+
+      if (form) {
+        form.submit();
+      }
+    });
+  });
 });
