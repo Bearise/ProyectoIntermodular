@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 13-04-2026 a las 23:56:30
+-- Tiempo de generación: 30-04-2026 a las 20:28:56
 -- Versión del servidor: 10.11.16-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -34,15 +34,6 @@ CREATE TABLE `carrito` (
   `cantidad` int(11) DEFAULT 1,
   `fecha_creacion` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `carrito`
---
-
-INSERT INTO `carrito` (`id_carrito`, `id_usuario`, `id_producto`, `cantidad`, `fecha_creacion`) VALUES
-(11, 1, 15, 1, '2026-04-12 17:09:19'),
-(12, 1, 16, 1, '2026-04-12 17:09:28'),
-(13, 1, 18, 1, '2026-04-13 17:02:50');
 
 -- --------------------------------------------------------
 
@@ -90,7 +81,9 @@ CREATE TABLE `direccion` (
 --
 
 INSERT INTO `direccion` (`id_direccion`, `id_usuario`, `calle`, `numero`, `ciudad`, `provincia`, `codigo_postal`, `pais`) VALUES
-(1, 1, 'Venezuela', '33', 'Morón de la frontera', 'Sevilla', '41530', 'España');
+(1, 1, 'Venezuela', '33', 'Morón de la frontera', 'Sevilla', '41530', 'España'),
+(3, 1, 'Gerena', '23', 'Morón de la frontera', 'Sevilla', '41530', 'España'),
+(5, 3, 'Calle Venezuela', '33', 'Morón de la frontera', 'Sevilla', '41530', 'España');
 
 -- --------------------------------------------------------
 
@@ -115,7 +108,7 @@ CREATE TABLE `pago` (
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `fecha_pedido` datetime DEFAULT current_timestamp(),
-  `estado_pedido` enum('pendiente','enviado','entregado','cancelado') DEFAULT 'pendiente',
+  `estado_pedido` varchar(20) NOT NULL DEFAULT 'pendiente',
   `total` decimal(10,2) DEFAULT NULL,
   `id_direccion` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL
@@ -127,7 +120,13 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`id_pedido`, `fecha_pedido`, `estado_pedido`, `total`, `id_direccion`, `id_usuario`) VALUES
 (1, '2026-04-12 13:34:49', 'pendiente', 39.80, 1, 1),
-(2, '2026-04-12 19:00:10', 'pendiente', 39.30, 1, 1);
+(2, '2026-04-12 19:00:10', 'enviado', 39.30, 1, 1),
+(3, '2026-04-22 12:18:39', 'pendiente', 60.49, 1, 1),
+(4, '2026-04-28 14:57:32', 'pendiente', 48.49, 3, 1),
+(5, '2026-04-28 15:08:38', 'pendiente', 18.00, NULL, 3),
+(6, '2026-04-28 18:54:51', 'pendiente', 5.99, 1, 1),
+(7, '2026-04-28 18:58:46', 'pagado', 17.50, 1, 1),
+(8, '2026-04-28 19:22:22', 'pendiente', 19.79, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,20 @@ INSERT INTO `pedido_producto` (`id_pedido_producto`, `id_pedido`, `id_producto`,
 (3, 1, 11, 1, 14.90),
 (4, 2, 6, 2, 7.95),
 (5, 2, 5, 1, 8.50),
-(6, 2, 11, 1, 14.90);
+(6, 2, 11, 1, 14.90),
+(7, 3, 15, 1, 9.50),
+(8, 3, 16, 1, 11.00),
+(9, 3, 18, 1, 22.99),
+(10, 3, 5, 2, 8.50),
+(11, 4, 2, 2, 18.00),
+(12, 4, 8, 1, 6.50),
+(13, 4, 21, 1, 5.99),
+(14, 5, 2, 1, 18.00),
+(15, 6, 21, 1, 5.99),
+(16, 7, 16, 1, 11.00),
+(17, 7, 10, 1, 6.50),
+(18, 8, 21, 1, 5.99),
+(19, 8, 9, 2, 6.90);
 
 -- --------------------------------------------------------
 
@@ -195,7 +207,7 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `precio`, `image
 (17, 'Pack Relax', 'Un ritual completo para desconectar del día. Incluye:\n- Vela Canela y Naranja\n- Aceite Esencial de Lavanda\n- Jabón Lavanda y Karité', 29.90, 'assets/images/products/packs/pack-relax.png', 6, 1),
 (18, 'Pack Cuidado Natural', 'Transforma tu rutina diaria en un momento de autocuidado. Incluye:\n- Jabón Avena y Miel\n- Bálsamo Cacao y Almendras\n- Bruma corporal', 22.99, 'assets/images/products/packs/pack-cuidado-natural.png', 6, 1),
 (19, 'Pack Ritual Nocturno', 'Diseñado para acompañarte en tu rutina nocturna. Incluye:\n- Vela Vainilla\n- Bruma de almohada\n- Bálsamo labial Avena y Miel', 35.90, 'assets/images/products/packs/pack-ritual-nocturno.png', 6, 1),
-(21, 'Bálsamo labial lavanda', 'Bálsamo labial hidratante y calmante con aceite esencial de lavanda', 5.99, 'assets/images/products/balsamos/balsamo-lavanda.png', 2, 1);
+(21, 'Bálsamo labial lavanda', 'Bálsamo labial hidratante y calmante con aceite esencial de lavanda', 5.49, 'assets/images/products/balsamos/balsamo-lavanda.png', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +230,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellidos`, `email`, `password`, `rol`, `fecha_registro`) VALUES
-(1, 'Beatriz', 'Ríos Serrano', 'bearise@velvia.com', '$2y$10$8lwmT2xO59WBqRL2GTqkuO8MnVXXFa.YlnBic1DYrFcsXn6mjVGwq', 'admin', '2026-04-09 22:06:57');
+(1, 'Beatriz', 'Ríos Serrano', 'bearise@velvia.com', '$2y$10$8lwmT2xO59WBqRL2GTqkuO8MnVXXFa.YlnBic1DYrFcsXn6mjVGwq', 'admin', '2026-04-09 22:06:57'),
+(3, 'Olivia', 'Ríos', 'brios523@gmail.com', '$2y$10$FFfQ2OTxelxhmLFUHKXzDO0JNtgxFm9tPFMr6uzFnL/GE9vmExl02', 'cliente', '2026-04-28 12:55:03');
 
 --
 -- Índices para tablas volcadas
@@ -290,7 +303,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -302,7 +315,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -314,13 +327,13 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido_producto`
 --
 ALTER TABLE `pedido_producto`
-  MODIFY `id_pedido_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pedido_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -332,7 +345,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
